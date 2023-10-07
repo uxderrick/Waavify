@@ -1,9 +1,25 @@
 * {
   background-color: #18181b;
 }
-/* 
+
 .container {
+  padding-top: 80px;
+}
+
+.image-container {
+  width: 100%;
+  /* height: 40px; */
+  background-color: wheat;
+  background-image: url("src/assets/bg-image.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex: 1;
+}
+
+.big-box {
   display: flex;
-  justify-content: center;
-  padding-top: 88px;
-} */
+  flex-direction: column;
+  gap: 40px;
+  height: 100vh;
+}
