@@ -24,7 +24,7 @@ const LandingPage = () => {
             {/* logo */}
             <img
               className="container"
-              src="src/assets/logo.svg"
+              src="https://raw.githubusercontent.com/uxderrick/Waavify/8cd10ca0d56640d6e309d45504ea3cc9c2567386/src/assets/logo.svg"
               height={40}
             ></img>
 
@@ -42,8 +42,8 @@ const LandingPage = () => {
                 What are you up <br></br> to on <Em> Spotify</Em>?
               </Heading>
               <Text size="4" align={"center"}>
-                Connect your Spotify Account to learn more about your <br></br>
-                all-time Spotify user activity
+                Connect your Spotify Account to learn more about your all-time
+                Spotify user activity
               </Text>
               <Flex className="button">
                 <Button variant="solid" size="4">
