@@ -8,8 +8,13 @@ import {
   Em,
 } from "@radix-ui/themes";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 const LandingPage = () => {
+  //
+  // navigation
+
+  //
   return (
     <>
       <Box className="big-box">
