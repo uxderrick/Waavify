@@ -39,7 +39,7 @@ const LandingPage = () => {
                   xl: "9",
                 }}
               >
-                What are you up <br></br> to on <Em> Spotify</Em>?
+                What are you up to on <Em> Spotify</Em>?
               </Heading>
               <Text size="4" align={"center"}>
                 Connect your Spotify Account to learn more about your all-time
