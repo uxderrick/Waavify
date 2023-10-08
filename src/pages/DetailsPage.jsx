@@ -56,7 +56,7 @@ const DetailsPage = () => {
                 Find below your lifetime Spotify behaviour
               </Text>
             </Flex>
-            <Flex gap="6" wrap="wrap">
+            <Flex gap="5" wrap="wrap">
               <DetailsCard></DetailsCard>
               <DetailsCard></DetailsCard>
             </Flex>
