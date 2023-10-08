@@ -1,12 +1,4 @@
-import {
-  Heading,
-  Text,
-  Flex,
-  Box,
-  Button,
-  Container,
-  Em,
-} from "@radix-ui/themes";
+import { Heading, Text, Flex, Box, Button, Em } from "@radix-ui/themes";
 import React from "react";
 
 const LandingPage = () => {
