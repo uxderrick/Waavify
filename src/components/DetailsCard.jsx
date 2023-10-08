@@ -4,7 +4,7 @@ import React from "react";
 const DetailsCard = () => {
   return (
     <>
-      <Flex gap="6" wrap="wrap">
+      <Flex wrap="wrap">
         <Flex
           align="center"
           justify="center"
