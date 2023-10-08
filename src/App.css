@@ -78,6 +78,8 @@
 
 .button {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .song-dets {

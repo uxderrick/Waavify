@@ -45,15 +45,13 @@ const LandingPage = () => {
               >
                 What are you up to on <Em> Spotify</Em>?
               </Heading>
-              <Text size="4" align={"center"}>
+              <Text size="4" align="center">
                 Connect your Spotify Account to learn more about your all-time
                 Spotify user activity
               </Text>
-              <Flex className="button">
-                <Button variant="solid" size="4">
-                  Connect my Spotify
-                </Button>
-              </Flex>
+              <Button variant="solid" size="4">
+                Connect my Spotify
+              </Button>
             </Flex>
           </Flex>
         </Box>
