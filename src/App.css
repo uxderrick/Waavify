@@ -1,5 +1,6 @@
 * {
   background-color: #18181b;
+  margin: 0px;
 }
 
 .container {
@@ -22,4 +23,63 @@
   flex-direction: column;
   gap: 40px;
   height: 100vh;
+}
+
+.small-text {
+  color: #94a3b8;
+}
+
+.details-box {
+  background-color: #18181b;
+  height: fit-content;
+  min-width: 300px;
+  width: fit-content;
+  border: 2px solid #ffffff;
+  padding: 24px 32px 32px 32px;
+  border-radius: 16px;
+}
+
+.details-value {
+  font-family: Inter;
+  font-size: 100px;
+  font-weight: bolder;
+  line-height: 1.2;
+  font-style: italic;
+}
+
+.music-card {
+  width: 100%;
+  max-width: 300px;
+  height: fit-content;
+  background-color: #272727;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.song-title {
+  background-color: transparent;
+  text-align: center;
+}
+
+.no-bg {
+  background-color: transparent;
+}
+
+.music-photo {
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  background-color: yellow;
+  background-image: url("https://s3-alpha-sig.figma.com/img/f014/ae5f/529fd821b50be1e761ddb0e6cf13e1ea?Expires=1697414400&Signature=BYKcopFGyKW~MLmYmUC3Fb1zCj9z3HmRsWUskMKaWk0YIWtIqWpH3qyK8jlPon6Jd7VLpd034016VcO3XvHSOWU-CKyaKNgT4guELc3BwauGSux-y461jRKJ~5~vKiylyzR3hrbftLK48Mxnrpxocr2xqhZorMWtzu105dde8SrYvkK6G2zQF73vp71T7cgyqq2jZlUq1yiWLZdzihqw7PI-hwz5AL4sJ9rTYpznNJvJtiDzs5z~cY-lPAuiedJSvheahtExuLRyfgRMTGLjBTLrmc6pfF8jC~v9YM6dZjFRc~fr37VbSFYYlHs1j2bB6VebWPodDaFJbB6kLfChsA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+}
+
+.button {
+  width: 100%;
+}
+
+.song-dets {
+  height: fit-content;
 }
