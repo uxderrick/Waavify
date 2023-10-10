@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Heading,
   Text,
@@ -13,6 +13,46 @@ import DetailsCard from "../components/DetailsCard";
 import MusicCard from "../components/MusicCard";
 
 const DetailsPage = () => {
+  const [token, setToken] = useState("");
+  const [data, setSpotifyData] = useState({});
+
+  //useEffect
+  useEffect(() => {
+    const hash = window.location.hash;
+
+    //check if token is in local storage
+    let token = window.localStorage.getItem("token");
+    // console.log("Token from local storage:", token);
+
+    //if token is in local storage, set token state to that token
+    if (!token && hash) {
+      token = hash
+        .substring(1)
+        .split("&")
+        .find((elem) => elem.startsWith("access_token"))
+        .split("=")[1];
+
+      window.location.hash = "";
+      window.localStorage.setItem("token", token);
+    }
+
+    setToken(token); // Update the state with the new token value
+
+    //fetch data from spotify api
+    const fetchData = async () => {
+      const response = await fetch("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+
+      setSpotifyData(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <Box
@@ -40,6 +80,7 @@ const DetailsPage = () => {
                   size="2"
                   radius="full"
                   fallback="A"
+                  src={data.images && data.images[0].url}
                 ></Avatar>
                 <Text
                   size={{
@@ -49,7 +90,7 @@ const DetailsPage = () => {
                     xl: "7",
                   }}
                 >
-                  Derrick
+                  {data.display_name}
                 </Text>
               </Flex>
               <Text as="p" size="2" className="small-text">

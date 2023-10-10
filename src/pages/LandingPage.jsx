@@ -1,12 +1,21 @@
 import { Heading, Text, Flex, Box, Button, Em } from "@radix-ui/themes";
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 
 const LandingPage = () => {
   //
-  // navigation
+  // Spotify API stuff
+  const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
+  const REDIRECT_URI = "http://localhost:5174/dashboard";
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+  const RESPONSE_TYPE = "token";
 
-  //
+  const handleButtonClick = () => {
+    const urlToOpen = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
+    location.href = urlToOpen;
+  };
+
+  useEffect(() => {}, []);
+
   return (
     <>
       <Box className="big-box">
@@ -42,7 +51,7 @@ const LandingPage = () => {
                 Connect your Spotify Account to learn more about your all-time
                 Spotify user activity
               </Text>
-              <Button variant="solid" size="4">
+              <Button variant="solid" size="4" onClick={handleButtonClick}>
                 Connect my Spotify
               </Button>
             </Flex>
