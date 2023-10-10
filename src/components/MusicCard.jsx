@@ -35,7 +35,7 @@ const MusicCard = () => {
             size="2"
             className="button"
           >
-            Connect my Spotify
+            Listen on Spotify
           </Button>
         </Flex>
       </Flex>

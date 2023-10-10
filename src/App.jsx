@@ -15,6 +15,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<LandingPage></LandingPage>}></Route>
+          <Route
+            path="/dashboard"
+            element={<DetailsPage></DetailsPage>}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>
