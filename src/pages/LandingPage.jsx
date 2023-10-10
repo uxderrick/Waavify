@@ -5,7 +5,7 @@ const LandingPage = () => {
   //
   // Spotify API stuff
   const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
-  const REDIRECT_URI = "http://localhost:5174/dashboard";
+  const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
