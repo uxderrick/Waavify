@@ -34,8 +34,8 @@ const DetailsPage = () => {
       window.location.hash = "";
       window.localStorage.setItem("token", token);
     }
-
-    setToken(token); // Update the state with the new token value
+    // Update the state with the new token value
+    setToken(token);
 
     //fetch data from spotify api
     const fetchData = async () => {
