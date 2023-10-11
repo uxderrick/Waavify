@@ -26,12 +26,17 @@ const DetailsPage = () => {
     //if token is in local storage, set token state to that token
     if (!token && hash) {
       token = hash
+        // Remove the # from the string
         .substring(1)
+        // Transform the string into an object of strings
         .split("&")
+        // Split each item of the object into an array
         .find((elem) => elem.startsWith("access_token"))
+        // Get the first element of the array
         .split("=")[1];
 
-      window.location.hash = "";
+        //remove token from url
+      // window.location.hash = "";
       window.localStorage.setItem("token", token);
     }
 
@@ -45,8 +50,10 @@ const DetailsPage = () => {
         },
       });
       const data = await response.json();
+
       console.log(data);
 
+      //
       setSpotifyData(data);
     };
     fetchData();
