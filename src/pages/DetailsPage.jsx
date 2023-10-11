@@ -22,7 +22,6 @@ const DetailsPage = () => {
 
     //check if token is in local storage
     let token = window.localStorage.getItem("token");
-    // console.log("Token from local storage:", token);
 
     //if token is in local storage, set token state to that token
     if (!token && hash) {
@@ -56,7 +55,6 @@ const DetailsPage = () => {
   return (
     <>
       <Box
-        // width="100%"
         py="1"
         style={{
           //   backgroundColor: "var(--zinc-900, #18181B)",
