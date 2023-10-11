@@ -21,10 +21,10 @@ const DetailsPage = () => {
     const hash = window.location.hash;
 
     //check if token is in local storage
-    let token = window.localStorage.getItem("token");
+    // let token = window.localStorage.getItem("token");
 
     //if token is in local storage, set token state to that token
-    if (!token && hash) {
+    if (hash) {
       token = hash
         .substring(1)
         .split("&")
