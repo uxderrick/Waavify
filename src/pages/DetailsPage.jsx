@@ -25,7 +25,7 @@ const DetailsPage = () => {
 
     //if token is in local storage, set token state to that token
     if (hash) {
-      token = hash
+      let token = hash
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
