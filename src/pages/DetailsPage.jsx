@@ -77,7 +77,10 @@ const DetailsPage = () => {
                   variant="solid"
                   size="2"
                   radius="full"
-                  fallback="A"
+                  fallback={
+                    //the first letter in the display_name
+                    data.display_name.charAt(0)
+                  }
                   src={data.images && data.images[0].url}
                 ></Avatar>
                 <Text
