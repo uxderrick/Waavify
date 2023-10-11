@@ -21,10 +21,10 @@ const DetailsPage = () => {
     const hash = window.location.hash;
 
     //check if token is in local storage
-    let token = window.localStorage.getItem("token");
+    // let token = window.localStorage.getItem("token");
 
     //if token is in local storage, set token state to that token
-    if (!token && hash) {
+    if (hash) {
       token = hash
         .substring(1)
         .split("&")
@@ -34,8 +34,8 @@ const DetailsPage = () => {
       window.location.hash = "";
       window.localStorage.setItem("token", token);
     }
-
-    setToken(token); // Update the state with the new token value
+    // Update the state with the new token value
+    setToken(token);
 
     //fetch data from spotify api
     const fetchData = async () => {
