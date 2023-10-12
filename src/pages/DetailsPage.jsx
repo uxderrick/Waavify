@@ -35,8 +35,6 @@ const DetailsPage = () => {
         // Get the first element of the array
         .split("=")[1];
 
-      //remove token from url
-      // window.location.hash = "";
       window.localStorage.setItem("token", token);
     } //else if token is not in local storage, redirect to spotify login page
     else if (!token) {
@@ -45,6 +43,8 @@ const DetailsPage = () => {
 
     //replace saved token with new token
     setToken(token);
+
+    console.log(token);
 
     //fetch data from spotify api
     const fetchData = async () => {

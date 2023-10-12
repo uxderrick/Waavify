@@ -1,5 +1,5 @@
 import { Heading, Text, Flex, Box, Button, Em } from "@radix-ui/themes";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 const LandingPage = () => {
   //for development - comment out for production
