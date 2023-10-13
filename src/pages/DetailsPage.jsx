@@ -23,10 +23,10 @@ const DetailsPage = () => {
     const hash = window.location.hash;
 
     //check if token is in local storage
-    let token = window.localStorage.getItem("token");
+    // let token = window.localStorage.getItem("token");
 
     //if token is in local storage, set token state to that token
-    if (hash) {
+    if (!storedToken && hash) {
       token = hash
         // Remove the # from the string
         .substring(1)
@@ -39,14 +39,11 @@ const DetailsPage = () => {
       //Clear the hash from the URL
       // window.location.hash = "";
 
-      // // Clear the URL in the browser
-      window.history.pushState({}, null, "/dashboard");
+      // Clear the URL in the browser
+      // window.history.pushState({}, null, "/dashboard");
 
       window.localStorage.setItem("token", token);
     } //else if token is not in local storage, redirect to spotify login page
-    else if (!token) {
-      window.location.href = "/";
-    }
 
     //replace saved token with new token
     setToken(token);
@@ -74,6 +71,8 @@ const DetailsPage = () => {
       fetchData(storedToken);
     }
   }, []);
+
+  //write tests for this
 
   return (
     <>
