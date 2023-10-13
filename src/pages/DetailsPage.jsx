@@ -36,8 +36,7 @@ const DetailsPage = () => {
         .find((elem) => elem.startsWith("access_token"))
         // Get the first element of the array
         .split("=")[1];
-      //Clear the hash from the URL
-      // window.location.hash = "";
+
 
       // Clear the URL in the browser
       window.history.pushState({}, null, "/dashboard");
