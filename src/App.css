@@ -1,6 +1,8 @@
 * {
   background-color: #18181b;
   padding: 0px;
+  font-family: Inter;
+  margin: 0px;
 }
 
 .container {
@@ -40,7 +42,6 @@
 }
 
 .details-value {
-  font-family: Inter;
   font-size: 100px;
   font-weight: bolder;
   line-height: 1.2;

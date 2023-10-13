@@ -18,13 +18,15 @@ const DetailsPage = () => {
 
   //useEffect
   useEffect(() => {
+    const storedToken = window.localStorage.getItem("token");
+
     const hash = window.location.hash;
 
     //check if token is in local storage
     let token = window.localStorage.getItem("token");
 
     //if token is in local storage, set token state to that token
-    if (!token && hash) {
+    if (hash) {
       token = hash
         // Remove the # from the string
         .substring(1)
@@ -34,6 +36,11 @@ const DetailsPage = () => {
         .find((elem) => elem.startsWith("access_token"))
         // Get the first element of the array
         .split("=")[1];
+      //Clear the hash from the URL
+      // window.location.hash = "";
+
+      // // Clear the URL in the browser
+      window.history.pushState({}, null, "/");
 
       window.localStorage.setItem("token", token);
     } //else if token is not in local storage, redirect to spotify login page
@@ -44,7 +51,7 @@ const DetailsPage = () => {
     //replace saved token with new token
     setToken(token);
 
-    console.log(token);
+    // console.log(token);
 
     //fetch data from spotify api
     const fetchData = async () => {
@@ -61,6 +68,11 @@ const DetailsPage = () => {
       setSpotifyData(data);
     };
     fetchData();
+
+    if (storedToken) {
+      // If the token is already in local storage, use it to fetch user data
+      fetchData(storedToken);
+    }
   }, []);
 
   return (
