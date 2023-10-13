@@ -40,7 +40,7 @@ const DetailsPage = () => {
       // window.location.hash = "";
 
       // // Clear the URL in the browser
-      window.history.pushState({}, null, "/");
+      window.history.pushState({}, null, "/dashboard");
 
       window.localStorage.setItem("token", token);
     } //else if token is not in local storage, redirect to spotify login page
