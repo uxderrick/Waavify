@@ -1,68 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Text, Flex, Box, Avatar } from "@radix-ui/themes";
+import { Heading, Text, Flex, Box, Avatar } from "@radix-ui/themes";
+
 import DetailsCard from "../components/DetailsCard";
 import MusicCard from "../components/MusicCard";
 
 const DetailsPage = () => {
-  const [token, setToken] = useState("");
-  const [data, setSpotifyData] = useState({});
-
   //useEffect
-  useEffect(() => {
-    const hash = window.location.hash;
-
-    //check if token is in local storage
-    const storedToken = window.localStorage.getItem("token");
-
-    //if token is in local storage, set token state to that token
-    if (storedToken) {
-      setToken(storedToken);
-      console.log("token in storage");
-    } else if (!storedToken && hash) {
-      const storedToken = hash
-        // Remove the # from the string
-        .substring(1)
-        // Transform the string into an object of strings
-        .split("&")
-        // Split each item of the object into an array
-        .find((elem) => elem.startsWith("access_token"))
-        // Get the first element of the array
-        .split("=")[1];
-
-      setToken(storedToken);
-
-      // Clear the URL in the browser
-      // window.history.pushState({}, null, "/dashboard");
-
-      window.localStorage.setItem("token", storedToken);
-      console.log("token not in storage");
-      // setToken(token);
-    }
-
-    //fetch data from spotify api
-    const fetchData = async () => {
-      const response = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-          // "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-
-      // console.log(data);
-
-      setSpotifyData(data);
-    };
-    fetchData(storedToken);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
       <Box
         py="1"
         style={{
-          //   backgroundColor: "var(--zinc-900, #18181B)",
           color: "white",
           marginLeft: "10%",
           marginRight: "10%",
