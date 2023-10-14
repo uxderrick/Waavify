@@ -22,6 +22,7 @@ const LandingPage = () => {
 
   useEffect(() => {}, []);
 
+  //
   return (
     <>
       <Box className="big-box">
