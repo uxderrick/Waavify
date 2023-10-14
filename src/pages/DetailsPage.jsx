@@ -1,85 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {
-  Heading,
-  Text,
-  Flex,
-  Box,
-  Button,
-  Container,
-  Em,
-  Avatar,
-} from "@radix-ui/themes";
+import { Heading, Text, Flex, Box, Avatar } from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
 import MusicCard from "../components/MusicCard";
 
 const DetailsPage = () => {
-  const [token, setToken] = useState("");
-  const [data, setSpotifyData] = useState({});
-
   //useEffect
-  useEffect(() => {
-    const storedToken = window.localStorage.getItem("token");
-
-    const hash = window.location.hash;
-
-    //check if token is in local storage
-    // let token = window.localStorage.getItem("token");
-
-    //if token is in local storage, set token state to that token
-    if (!storedToken && hash) {
-      token = hash
-        // Remove the # from the string
-        .substring(1)
-        // Transform the string into an object of strings
-        .split("&")
-        // Split each item of the object into an array
-        .find((elem) => elem.startsWith("access_token"))
-        // Get the first element of the array
-        .split("=")[1];
-      //Clear the hash from the URL
-      // window.location.hash = "";
-
-      // Clear the URL in the browser
-      // window.history.pushState({}, null, "/dashboard");
-
-      window.localStorage.setItem("token", token);
-    } //else if token is not in local storage, redirect to spotify login page
-
-    //replace saved token with new token
-    setToken(token);
-
-    // console.log(token);
-
-    //fetch data from spotify api
-    const fetchData = async () => {
-      const response = await fetch("https://api.spotify.com/v1/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await response.json();
-
-      console.log(data);
-
-      //
-      setSpotifyData(data);
-    };
-    fetchData();
-
-    if (storedToken) {
-      // If the token is already in local storage, use it to fetch user data
-      fetchData(storedToken);
-    }
-  }, []);
-
-  //write tests for this
+  useEffect(() => {}, []);
 
   return (
     <>
       <Box
         py="1"
         style={{
-          //   backgroundColor: "var(--zinc-900, #18181B)",
           color: "white",
           marginLeft: "10%",
           marginRight: "10%",
