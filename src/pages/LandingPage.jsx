@@ -15,6 +15,7 @@ const LandingPage = () => {
   const RESPONSE_TYPE = "token";
   let SCOPE = ["user-read-recently-played"];
 
+  // handle button click
   const handleButtonClick = () => {
     const urlToOpen = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE.join(
       " "
