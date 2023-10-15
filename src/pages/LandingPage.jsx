@@ -13,11 +13,15 @@ const LandingPage = () => {
   //
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
-  let SCOPE = "user-read-recently-played";
+  let SCOPE = ["user-read-recently-played"];
 
   const handleButtonClick = () => {
-    const urlToOpen = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&show_dialog=true`;
-    location.href = urlToOpen;
+    const urlToOpen = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE.join(
+      " "
+    )}&show_dialog=true`;
+
+    // open the spotify auth page
+    window.location.href = urlToOpen;
   };
 
   useEffect(() => {}, []);

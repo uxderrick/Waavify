@@ -1,11 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { Heading, Text, Flex, Box, Avatar } from "@radix-ui/themes";
+import { Text, Flex, Box, Avatar } from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
 import MusicCard from "../components/MusicCard";
+import axios from "axios";
+
+const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
+const TRACK_ENDPOINT = "https://api.spotify.com/me";
 
 const DetailsPage = () => {
+  const [token, setToken] = useState("");
+  const [data, setData] = useState({});
+
   //useEffect
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const hash = window.location.hash;
+    const storedToken = window.localStorage.getItem("token");
+    window.location.hash = " ";
+
+    // get spotify user data
+    const fetchSpotifyData = (token) => {
+      axios
+        .get(USERDATA_ENDPOINT, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((response) => {
+          setData(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    if (!storedToken && hash) {
+      const _token = hash.substring(1).split("&")[0].split("=")[1];
+      window.localStorage.setItem("token", _token);
+      setToken(_token);
+      console.log("Token:", _token);
+      fetchSpotifyData(_token);
+    } else {
+      setToken(storedToken);
+      console.log("storedToken");
+      fetchSpotifyData(storedToken);
+    }
+  }, []);
 
   return (
     <>
