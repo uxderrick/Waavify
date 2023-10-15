@@ -13,7 +13,14 @@ const LandingPage = () => {
   //
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
-  let SCOPE = ["user-read-recently-played"];
+  const SCOPE = [
+    "user-read-recently-played",
+    "playlist-read-collaborative",
+    "playlist-read-private",
+    "user-top-read",
+    "user-read-email",
+    "user-read-private",
+  ];
 
   // handle button click
   const handleButtonClick = () => {
