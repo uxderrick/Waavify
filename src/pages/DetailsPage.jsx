@@ -15,15 +15,16 @@ const DetailsPage = () => {
   //useEffect
   useEffect(() => {
     const hash = window.location.hash;
-    const storedToken = window.localStorage.getItem("token");
-    window.location.hash = " ";
+    // const storedToken = window.localStorage.getItem("token");
+    // window.location.hash = " ";
 
     // get spotify user data
     const fetchSpotifyData = (token) => {
       axios
         .get(USERDATA_ENDPOINT, {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/x-www-form-urlencoded",
           },
         })
         .then((response) => {
@@ -35,16 +36,13 @@ const DetailsPage = () => {
         });
     };
 
-    if (!storedToken && hash) {
+    if (hash) {
       const _token = hash.substring(1).split("&")[0].split("=")[1];
       window.localStorage.setItem("token", _token);
       setToken(_token);
-      console.log("Token:", _token);
+      // window.location.hash = " ";
+      // console.log("Token:", _token);
       fetchSpotifyData(_token);
-    } else {
-      setToken(storedToken);
-      console.log("storedToken");
-      fetchSpotifyData(storedToken);
     }
   }, []);
 
