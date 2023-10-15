@@ -6,7 +6,7 @@ import MusicCard from "../components/MusicCard";
 import axios from "axios";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
-const TRACK_ENDPOINT = "https://api.spotify.com/v1/me/player/recently-played";
+const TRACK_ENDPOINT = "https://api.spotify.com/v1/playlists/";
 
 const DetailsPage = () => {
   const [token, setToken] = useState("");
