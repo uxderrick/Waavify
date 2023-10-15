@@ -2,12 +2,12 @@ import { Heading, Text, Flex, Box, Button, Em } from "@radix-ui/themes";
 import React, { useEffect } from "react";
 
 const LandingPage = () => {
-  const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
-
   //for development - comment out for production
+  // const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
   // const REDIRECT_URI = "http://localhost:5173/dashboard";
 
   // for production - comment out for development
+  const CLIENT_ID = "1bde50c80abb4591bbfb7e53ff49ced7";
   const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
 
   //
