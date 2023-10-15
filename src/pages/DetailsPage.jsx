@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, Flex, Box, Avatar } from "@radix-ui/themes";
+
 import DetailsCard from "../components/DetailsCard";
 import MusicCard from "../components/MusicCard";
 import axios from "axios";
