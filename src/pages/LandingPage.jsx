@@ -3,21 +3,25 @@ import React, { useEffect } from "react";
 
 const LandingPage = () => {
   //for development - comment out for production
-  const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
-  const REDIRECT_URI = "http://localhost:5173/dashboard";
+  // const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
+  // const REDIRECT_URI = "http://localhost:5173/dashboard";
 
   // for production - comment out for development
-  // const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
-  // const CLIENT_ID = "1bde50c80abb4591bbfb7e53ff49ced7";
+  const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
+  const CLIENT_ID = "1bde50c80abb4591bbfb7e53ff49ced7";
 
   //
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
-  let SCOPE = "user-read-recently-played";
+  let SCOPE = ["user-read-recently-played"];
 
   const handleButtonClick = () => {
-    const urlToOpen = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&show_dialog=true`;
-    location.href = urlToOpen;
+    const urlToOpen = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE.join(
+      " "
+    )}&show_dialog=true`;
+
+    // open the spotify auth page
+    window.location.href = urlToOpen;
   };
 
   useEffect(() => {}, []);

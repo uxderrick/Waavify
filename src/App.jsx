@@ -1,13 +1,7 @@
 import React from "react";
 import LandingPage from "./pages/LandingPage";
 import DetailsPage from "./pages/DetailsPage";
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
