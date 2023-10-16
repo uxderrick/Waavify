@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Text, Flex, Box, Avatar } from "@radix-ui/themes";
-
 import DetailsCard from "../components/DetailsCard";
 import MusicCard from "../components/MusicCard";
 import axios from "axios";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
-const TRACK_ENDPOINT = "https://api.spotify.com/v1/playlists/";
+const TRACK_ENDPOINT =
+  "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10";
 
 const DetailsPage = () => {
   const [token, setToken] = useState("");
-  const [data, setData] = useState({});
+  const [userData, setUserData] = useState({});
+  const [trackData, setTrackData] = useState([]);
 
-  //useEffect
   useEffect(() => {
     const hash = window.location.hash;
-    // const storedToken = window.localStorage.getItem("token");
-    // window.location.hash = " ";
 
     // get spotify user data
-    const fetchSpotifyData = (token) => {
+    const fetchUserData = (token) => {
       axios
         .get(USERDATA_ENDPOINT, {
           headers: {
@@ -28,7 +26,24 @@ const DetailsPage = () => {
           },
         })
         .then((response) => {
-          setData(response.data);
+          setUserData(response.data);
+          // console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    const fetchTrackData = (token) => {
+      axios
+        .get(TRACK_ENDPOINT, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        })
+        .then((response) => {
+          setTrackData(response.data);
           console.log(response.data);
         })
         .catch((error) => {
@@ -41,10 +56,11 @@ const DetailsPage = () => {
       window.localStorage.setItem("token", _token);
       setToken(_token);
       // window.location.hash = " ";
-      // console.log("Token:", _token);
-      fetchSpotifyData(_token);
+      // console.log();
+      fetchUserData(_token);
+      fetchTrackData(_token);
     }
-  }, []);
+  }, [token]);
 
   return (
     <>
@@ -71,7 +87,7 @@ const DetailsPage = () => {
                   size="2"
                   radius="full"
                   fallback=""
-                  src={data.images && data.images[0].url}
+                  src={userData.images && userData.images[0].url}
                 ></Avatar>
                 <Text
                   size={{
@@ -81,7 +97,7 @@ const DetailsPage = () => {
                     xl: "7",
                   }}
                 >
-                  {data.display_name}
+                  {userData.display_name}
                 </Text>
               </Flex>
               <Text as="p" size="2" className="small-text">
@@ -99,16 +115,17 @@ const DetailsPage = () => {
             <Flex direction="column" gap="3" align="start">
               <Flex gap="2">
                 <Text size="4" weight="bold">
-                  My top songs
+                  My top {trackData.items?.length} songs
                 </Text>
               </Flex>
             </Flex>
             <Flex gap="6" wrap="wrap" width="100%">
-              <MusicCard></MusicCard>
-              <MusicCard></MusicCard>
-              <MusicCard></MusicCard>
-              <MusicCard></MusicCard>
-              <MusicCard></MusicCard>
+              {trackData.items?.map((track, index) => (
+                <MusicCard
+                  key={index}
+                  trackData={track} // Pass the track data as a prop to MusicCard
+                ></MusicCard>
+              ))}
             </Flex>
           </Flex>
         </Flex>
