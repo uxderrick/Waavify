@@ -3,12 +3,12 @@ import React, { useEffect } from "react";
 
 const LandingPage = () => {
   //for development - comment out for production
-  const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
-  const REDIRECT_URI = "http://localhost:5173/dashboard";
+  // const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
+  // const REDIRECT_URI = "http://localhost:5173/dashboard";
 
   // for production - comment out for development
-  // const CLIENT_ID = "1bde50c80abb4591bbfb7e53ff49ced7";
-  // const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
+  const CLIENT_ID = "1bde50c80abb4591bbfb7e53ff49ced7";
+  const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
 
   //
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
