@@ -56,7 +56,6 @@ const DetailsPage = () => {
       window.localStorage.setItem("token", _token);
       setToken(_token);
       // window.location.hash = " ";
-      // console.log();
       fetchUserData(_token);
       fetchTrackData(_token);
     }
@@ -124,6 +123,7 @@ const DetailsPage = () => {
                 <MusicCard
                   key={index}
                   trackData={track} // Pass the track data as a prop to MusicCard
+                  isFirstCard={index === 0}
                 ></MusicCard>
               ))}
             </Flex>
