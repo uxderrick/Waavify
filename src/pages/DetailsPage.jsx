@@ -6,9 +6,9 @@ import axios from "axios";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
-  "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5";
+  "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10";
 const TOP_ARTISTS_ENDPOINT =
-  "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=5&offset=0";
+  "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10&offset=0";
 
 const DetailsPage = () => {
   const [token, setToken] = useState("");
