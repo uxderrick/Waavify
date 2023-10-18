@@ -8,6 +8,8 @@ const MusicCard = ({ trackData, isFirstCard }) => {
 
     // open the spotify auth page
     window.location.href = urlToOpen;
+
+    trackData?.name;
   };
 
   return (
@@ -18,7 +20,7 @@ const MusicCard = ({ trackData, isFirstCard }) => {
         className="music-card"
         direction="column"
         gap="5"
-        style={{ backgroundColor: `${isFirstCard ? "gold" : "#272727"}` }}
+        style={{ border: `${isFirstCard ? "white" : null}` }}
       >
         <Flex
           className="music-photo"
@@ -31,33 +33,17 @@ const MusicCard = ({ trackData, isFirstCard }) => {
           width="100%"
         >
           <Flex direction="column" gap="1" className="no-bg">
-            <Heading
-              className="no-bg song-title"
-              size="4"
-              style={{ color: `${isFirstCard ? "#272727" : "#ffffff"}` }}
-            >
+            <Heading className="no-bg song-title" size="4">
               {trackData?.name}
             </Heading>
             <Flex gap="2" className="no-bg" justify="center">
-              <Text
-                className="song-title small-text no-bg"
-                size="2"
-                style={{ color: `${isFirstCard ? "#272727" : "#94a3b8"}` }}
-              >
+              <Text className="song-title small-text no-bg" size="2">
                 {trackData.artists[0].name}
               </Text>
-              <Text
-                className="song-title small-text no-bg"
-                size="2"
-                style={{ color: `${isFirstCard ? "#272727" : "#94a3b8"}` }}
-              >
+              <Text className="song-title small-text no-bg" size="2">
                 •
               </Text>
-              <Text
-                className="song-title small-text no-bg"
-                size="2"
-                style={{ color: `${isFirstCard ? "#272727" : "#94a3b8"}` }}
-              >
+              <Text className="song-title small-text no-bg" size="2">
                 {trackData.album.release_date.split("-")[0]}
               </Text>
             </Flex>
