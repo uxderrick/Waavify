@@ -33,27 +33,29 @@
 
 .details-box {
   background-color: #18181b;
-  /* height: fit-content; */
+  height: fit-content;
   min-width: 300px;
-  width: fit-content;
+  width: 100%;
   border: 2px solid #ffffff;
-  padding: 24px 32px 32px 32px;
+  padding: 24px 32px 16px 32px;
   border-radius: 16px;
 }
 
 .details-value {
-  font-size: 100px;
+  font-size: 35px;
   font-weight: bolder;
   line-height: 1.2;
   font-style: italic;
   margin: 0px;
+  /* width: 100%; */
+  /* word-wrap: normal; */
 }
 
 .music-card {
   width: 100%;
   max-width: 300px;
   height: fit-content;
-  /* background-color: goldenrod; */
+  background-color: #272727;
   padding: 16px;
   border-radius: 16px;
   display: flex;

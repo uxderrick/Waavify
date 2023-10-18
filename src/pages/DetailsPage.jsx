@@ -6,12 +6,16 @@ import axios from "axios";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
-  "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10";
+  "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5";
+const TOP_ARTISTS_ENDPOINT =
+  "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=5&offset=0";
 
 const DetailsPage = () => {
   const [token, setToken] = useState("");
   const [userData, setUserData] = useState({});
   const [trackData, setTrackData] = useState([]);
+  const [topArtist, setTopArtist] = useState([]);
+  const [recommended, setRecommended] = useState([]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -44,7 +48,26 @@ const DetailsPage = () => {
         })
         .then((response) => {
           setTrackData(response.data);
-          console.log(response.data);
+          // console.log(response.data);
+          // console.log(trackData.items[0].id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    const fetchTopArtist = (token) => {
+      axios
+        .get(TOP_ARTISTS_ENDPOINT, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        })
+        .then((response) => {
+          setTopArtist(response.data);
+          // console.log(response.data);
+          // console.log(topArtist.items[0].genres[0]);
         })
         .catch((error) => {
           console.log(error);
@@ -58,6 +81,7 @@ const DetailsPage = () => {
       // window.location.hash = " ";
       fetchUserData(_token);
       fetchTrackData(_token);
+      fetchTopArtist(_token);
     }
   }, [token]);
 
@@ -104,8 +128,14 @@ const DetailsPage = () => {
               </Text>
             </Flex>
             <Flex gap="5" wrap="wrap">
-              <DetailsCard></DetailsCard>
-              <DetailsCard></DetailsCard>
+              {trackData.items?.map((track, index) => (
+                <DetailsCard
+                  key={index}
+                  trackData={track} // Pass the track data as a prop to DetailsCard
+                  topArtist={topArtist} // Pass the track data as a prop to DetailsCard
+                  isFirstCard={index === 0}
+                ></DetailsCard>
+              ))}
             </Flex>
           </Flex>
 
@@ -114,7 +144,7 @@ const DetailsPage = () => {
             <Flex direction="column" gap="3" align="start">
               <Flex gap="2">
                 <Text size="4" weight="bold">
-                  My top {trackData.items?.length} songs
+                  Your top {trackData.items?.length} songs
                 </Text>
               </Flex>
             </Flex>
