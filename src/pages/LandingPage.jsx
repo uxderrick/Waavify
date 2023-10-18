@@ -10,7 +10,6 @@ const LandingPage = () => {
   const CLIENT_ID = "1bde50c80abb4591bbfb7e53ff49ced7";
   const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
 
-  //
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const SCOPE = [
