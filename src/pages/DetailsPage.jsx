@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, Flex, Box, Avatar } from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
+import PlaylistCard from "../components/PlaylistCard";
 import MusicCard from "../components/MusicCard";
 import axios from "axios";
 
@@ -15,7 +16,6 @@ const DetailsPage = () => {
   const [userData, setUserData] = useState({});
   const [trackData, setTrackData] = useState([]);
   const [topArtist, setTopArtist] = useState([]);
-  const [recommended, setRecommended] = useState([]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -30,14 +30,18 @@ const DetailsPage = () => {
           },
         })
         .then((response) => {
-          setUserData(response.data);
-          // console.log(response.data);
+          setUserData(response?.data);
+          // console.log(response?.data.id);
+
+          //save user id to local storage
+          window.localStorage.setItem("user_id", response?.data.id);
         })
         .catch((error) => {
           console.log(error);
         });
     };
 
+    // get spotify track data
     const fetchTrackData = (token) => {
       axios
         .get(TRACK_ENDPOINT, {
@@ -47,15 +51,15 @@ const DetailsPage = () => {
           },
         })
         .then((response) => {
-          setTrackData(response.data);
+          setTrackData(response?.data);
           // console.log(response.data);
-          // console.log(trackData.items[0].id);
         })
         .catch((error) => {
           console.log(error);
         });
     };
 
+    // get spotify top artist data
     const fetchTopArtist = (token) => {
       axios
         .get(TOP_ARTISTS_ENDPOINT, {
@@ -65,8 +69,18 @@ const DetailsPage = () => {
           },
         })
         .then((response) => {
-          setTopArtist(response.data);
-          // console.log(response.data);
+          setTopArtist(response?.data);
+          window.localStorage.setItem(
+            "top_artist",
+            response?.data?.items[0]?.id
+          );
+
+          window.localStorage.setItem(
+            "top_genre",
+            response?.data?.items[0]?.genres.join(", ")
+          );
+
+          // console.log(response?.data?.items[0]?.genres.join(", "));
           // console.log(topArtist.items[0].genres[0]);
         })
         .catch((error) => {
@@ -78,24 +92,26 @@ const DetailsPage = () => {
       const _token = hash.substring(1).split("&")[0].split("=")[1];
       window.localStorage.setItem("token", _token);
       setToken(_token);
-      // window.location.hash = " ";
       fetchUserData(_token);
       fetchTrackData(_token);
       fetchTopArtist(_token);
-    }
+    } else null;
   }, [token]);
 
+  //UI for the details page
   return (
     <>
       <Box
         py="1"
+        justify="center"
+        align="center"
         style={{
           color: "white",
           marginLeft: "10%",
           marginRight: "10%",
         }}
       >
-        <Flex direction="column" gap="9" align="start" width="100%">
+        <Flex direction="column" gap="9" width="100%">
           {/* logo */}
           <img
             className="container"
@@ -128,7 +144,7 @@ const DetailsPage = () => {
               </Text>
             </Flex>
             <Flex gap="5" wrap="wrap">
-              {trackData.items?.map((track, index) => (
+              {trackData?.items?.map((track, index) => (
                 <DetailsCard
                   key={index}
                   trackData={track} // Pass the track data as a prop to DetailsCard
@@ -138,7 +154,8 @@ const DetailsPage = () => {
               ))}
             </Flex>
           </Flex>
-
+          {/* Add recomendations to playlist */}
+          <PlaylistCard></PlaylistCard>
           {/* Top tracks */}
           <Flex direction="column" gap="4" width="100%">
             <Flex direction="column" gap="3" align="start">

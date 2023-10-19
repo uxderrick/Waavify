@@ -13,8 +13,6 @@ const MusicCard = ({ trackData, isFirstCard }) => {
   };
 
   return (
-    //url for track image
-    //trackData.album.images[0].url
     <>
       <Flex
         className="music-card"
@@ -24,7 +22,9 @@ const MusicCard = ({ trackData, isFirstCard }) => {
       >
         <Flex
           className="music-photo"
-          style={{ backgroundImage: `url(${trackData.album.images[0].url})` }}
+          style={{
+            backgroundImage: `url(${trackData?.album?.images[0]?.url})`,
+          }}
         ></Flex>
         <Flex
           className="song-dets no-bg"
@@ -38,13 +38,13 @@ const MusicCard = ({ trackData, isFirstCard }) => {
             </Heading>
             <Flex gap="2" className="no-bg" justify="center">
               <Text className="song-title small-text no-bg" size="2">
-                {trackData.artists[0].name}
+                {trackData?.artists[0]?.name}
               </Text>
               <Text className="song-title small-text no-bg" size="2">
                 •
               </Text>
               <Text className="song-title small-text no-bg" size="2">
-                {trackData.album.release_date.split("-")[0]}
+                {trackData?.album?.release_date?.split("-")[0]}
               </Text>
             </Flex>
           </Flex>

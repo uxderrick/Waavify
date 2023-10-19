@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 const LandingPage = () => {
   //for development - comment out for production
-  // const CLIENT_ID = "1e846411e1504fa8b8c81c909c26dd1d";
+  // const CLIENT_ID = "37a4d868947147109b6eedf8257cce38";
   // const REDIRECT_URI = "http://localhost:5173/dashboard";
 
   // for production - comment out for development
@@ -19,6 +19,8 @@ const LandingPage = () => {
     "user-top-read",
     "user-read-email",
     "user-read-private",
+    "playlist-modify-private",
+    "playlist-modify-public",
   ];
 
   // handle button click

@@ -63,6 +63,18 @@
   align-items: center;
 }
 
+.playlist-card {
+  width: 100%;
+  max-width: 620px;
+  height: fit-content;
+  background-color: #272727;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .song-title {
   background-color: transparent;
   text-align: center;
@@ -87,6 +99,10 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.small-button {
+  width: fit-content;
 }
 
 .song-dets {
