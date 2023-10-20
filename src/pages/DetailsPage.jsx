@@ -168,7 +168,7 @@ const DetailsPage = () => {
                   align="center"
                   className="no-bg summary-card"
                   style={{
-                    backgroundImage: `url("src/assets/nordwood-themes-KcsKWw77Ovw-unsplash.jpg")`,
+                    backgroundImage: `url("https://github.com/uxderrick/Waavify/blob/main/src/assets/nordwood-themes-KcsKWw77Ovw-unsplash.jpg?raw=true")`,
                   }}
                 >
                   <Flex
