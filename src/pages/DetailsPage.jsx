@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import {
   Text,
   Flex,
@@ -9,16 +9,51 @@ import {
   Button,
 } from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
-import MusicCard from "../components/MusicCard";
 import axios from "axios";
 import TrackRow from "../components/TrackRow";
-import SummaryCard from "./SummaryCard";
+import { useRef } from "react";
+
+function convertHtmlToCanvas(htmlElement) {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  const width = htmlElement.offsetWidth;
+  const height = htmlElement.offsetHeight;
+
+  canvas.width = width;
+  canvas.height = height;
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlElement.outerHTML, "text/html");
+  const data = new XMLSerializer().serializeToString(doc);
+  const img = new Image();
+  img.src = "data:image/svg+xml," + encodeURIComponent(data);
+
+  img.onload = () => {
+    context.drawImage(img, 0, 0, width, height);
+
+    // Continue with any further actions
+  };
+
+  return canvas;
+}
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
   "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5";
 
 const DetailsPage = () => {
+  const summaryCardRef = useRef(null);
+
+  const handleSummaryDownload = async () => {
+    // const canvas = convertHtmlToCanvas(summaryCardRef.current);
+    // const jpegDataUrl = canvas.toDataURL("image/jpeg");
+
+    // const link = document.createElement("a");
+    // link.href = jpegDataUrl;
+    // link.download = "summary_card.jpg";
+    // link.click();
+    console.log("downloaded");
+  };
   const [token, setToken] = useState("");
   const [userData, setUserData] = useState({});
   const [trackData, setTrackData] = useState([]);
@@ -71,7 +106,6 @@ const DetailsPage = () => {
       setToken(_token);
       fetchUserData(_token);
       fetchTrackData(_token);
-      // fetchTopArtist(_token);
     } else null;
   }, [token]);
 
@@ -80,8 +114,6 @@ const DetailsPage = () => {
     <div className="center-guy">
       <Box
         py="1"
-        // justify="center"
-        // align="center"
         style={{
           color: "white",
           marginLeft: "10%",
@@ -142,64 +174,71 @@ const DetailsPage = () => {
               </Flex>
             </Flex>
             <Flex gap="4" direction={`column`} width="100%">
-              <Flex
-                direction={`column`}
-                gap={`5`}
-                align="center"
-                className="summary-card"
-              >
+              {/* Summary card */}
+              <div ref={summaryCardRef}>
                 <Flex
                   direction={`column`}
-                  gap={`1`}
+                  gap={`5`}
                   align="center"
-                  className="no-bg"
+                  className="summary-card"
+                  id="summary-card"
                 >
-                  <Heading className="no-bg black-text" size={`4`}>
-                    {userData.display_name}
-                    ’s top 5 songs
-                  </Heading>
+                  <Flex
+                    direction={`column`}
+                    gap={`1`}
+                    align="center"
+                    className="no-bg"
+                  >
+                    <Heading className="no-bg black-text" size={`4`}>
+                      {userData.display_name}
+                      ’s top 5 songs
+                    </Heading>
+                    <Text
+                      as="p"
+                      size="2"
+                      className="track-text no-bg"
+                      align="center"
+                    >
+                      Your top songs summary
+                    </Text>
+                  </Flex>
+                  <Separator orientation="horizontal" size="4" />
+
+                  {/* track list */}
+                  <Flex
+                    className="no-bg track-list"
+                    direction={`column`}
+                    gap={`5`}
+                  >
+                    {trackData.items?.map((track, index) => (
+                      <TrackRow
+                        key={index}
+                        trackData={track} // Pass the track data as a prop to MusicCard
+                        // isFirstCard={index === 0}
+                      ></TrackRow>
+                    ))}
+                    {/* <TrackRow></TrackRow> */}
+                  </Flex>
+                  <Separator orientation="horizontal" size="4" />
                   <Text
                     as="p"
                     size="2"
-                    className="track-text no-bg"
+                    className="sumary-text no-bg"
                     align="center"
                   >
-                    Your top songs summary
+                    https://waavify.vercel.app
                   </Text>
                 </Flex>
-                <Separator orientation="horizontal" size="4" color="gray" />
-
-                {/* track list */}
-                <Flex
-                  className="no-bg track-list"
-                  direction={`column`}
-                  gap={`5`}
-                >
-                  {trackData.items?.map((track, index) => (
-                    <TrackRow
-                      key={index}
-                      trackData={track} // Pass the track data as a prop to MusicCard
-                      // isFirstCard={index === 0}
-                    ></TrackRow>
-                  ))}
-                  {/* <TrackRow></TrackRow> */}
-                </Flex>
-                <Separator orientation="horizontal" size="4" color="gray" />
-                <Text
-                  as="p"
-                  size="2"
-                  className="sumary-text no-bg"
-                  align="center"
-                >
-                  https://waavify.vercel.app
-                </Text>
-              </Flex>
-              <Button variant="solid" size="3" className="card-button">
+              </div>
+              <Button
+                variant="solid"
+                size="3"
+                className="card-button"
+                onClick={handleSummaryDownload}
+              >
                 Download as JPEG
               </Button>
-              <Flex gap={`6`} py={`6`}>
-                {" "}
-              </Flex>
+              <Flex gap={`6`} py={`6`}></Flex>
             </Flex>
           </Flex>
         </Flex>
