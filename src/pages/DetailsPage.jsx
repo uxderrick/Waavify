@@ -1,59 +1,45 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
-import {
-  Text,
-  Flex,
-  Box,
-  Avatar,
-  Heading,
-  Separator,
-  Button,
-} from "@radix-ui/themes";
+import React, { useEffect, useState } from "react";
+import { Text, Flex, Box, Avatar, Heading, Button } from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
 import axios from "axios";
 import TrackRow from "../components/TrackRow";
-import { useRef } from "react";
-
-function convertHtmlToCanvas(htmlElement) {
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
-  const width = htmlElement.offsetWidth;
-  const height = htmlElement.offsetHeight;
-
-  canvas.width = width;
-  canvas.height = height;
-
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlElement.outerHTML, "text/html");
-  const data = new XMLSerializer().serializeToString(doc);
-  const img = new Image();
-  img.src = "data:image/svg+xml," + encodeURIComponent(data);
-
-  img.onload = () => {
-    context.drawImage(img, 0, 0, width, height);
-
-    // Continue with any further actions
-  };
-
-  return canvas;
-}
+import html2canvas from "html2canvas";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
   "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5";
 
 const DetailsPage = () => {
-  const summaryCardRef = useRef(null);
+  //
+  const downloadSummaryCard = () => {
+    const summaryCard = document.getElementById("summary-card");
 
-  const handleSummaryDownload = async () => {
-    // const canvas = convertHtmlToCanvas(summaryCardRef.current);
-    // const jpegDataUrl = canvas.toDataURL("image/jpeg");
+    if (summaryCard) {
+      const backgroundImage = document.querySelector(".summary-card");
 
-    // const link = document.createElement("a");
-    // link.href = jpegDataUrl;
-    // link.download = "summary_card.jpg";
-    // link.click();
-    console.log("downloaded");
+      if (backgroundImage && backgroundImage.style.backgroundImage) {
+        const imageUrl = backgroundImage.style.backgroundImage.slice(5, -2);
+
+        // console.log("Background image URL:", imageUrl);
+
+        const imageLoader = new Image();
+        imageLoader.src = imageUrl;
+
+        imageLoader.onload = () => {
+          // console.log("Background image loaded.");
+
+          html2canvas(summaryCard).then((canvas) => {
+            const imgData = canvas.toDataURL("image/jpeg");
+            const link = document.createElement("a");
+            link.href = imgData;
+            link.download = "summary_card.jpeg";
+            link.click();
+          });
+        };
+      }
+    }
   };
+
   const [token, setToken] = useState("");
   const [userData, setUserData] = useState({});
   const [trackData, setTrackData] = useState([]);
@@ -175,13 +161,22 @@ const DetailsPage = () => {
             </Flex>
             <Flex gap="4" direction={`column`} width="100%">
               {/* Summary card */}
-              <div ref={summaryCardRef}>
+              <div
+                id="summary-card"
+                className="no-bg "
+                // style={{
+                //   backgroundImage:
+                //     'url("https://images.pexels.com/photos/10526880/pexels-photo-10526880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")',
+                // }}
+              >
                 <Flex
                   direction={`column`}
                   gap={`5`}
                   align="center"
-                  className="summary-card"
-                  id="summary-card"
+                  className="no-bg summary-card"
+                  style={{
+                    backgroundImage: `url("https://images.pexels.com/photos/10526880/pexels-photo-10526880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")`,
+                  }}
                 >
                   <Flex
                     direction={`column`}
@@ -202,8 +197,8 @@ const DetailsPage = () => {
                       Your top songs summary
                     </Text>
                   </Flex>
-                  <Separator orientation="horizontal" size="4" />
-
+                  <div className="horizontal-line"></div>
+                  {/* <Separator orientation="horizontal" size="4" color={`#ffffff`} /> */}
                   {/* track list */}
                   <Flex
                     className="no-bg track-list"
@@ -219,13 +214,10 @@ const DetailsPage = () => {
                     ))}
                     {/* <TrackRow></TrackRow> */}
                   </Flex>
-                  <Separator orientation="horizontal" size="4" />
-                  <Text
-                    as="p"
-                    size="2"
-                    className="sumary-text no-bg"
-                    align="center"
-                  >
+                  <div className="horizontal-line"></div>
+
+                  {/* <Separator orientation="horizontal" size="4" color="orange" /> */}
+                  <Text size="2" className="sumary-text no-bg" align="center">
                     https://waavify.vercel.app
                   </Text>
                 </Flex>
@@ -234,9 +226,9 @@ const DetailsPage = () => {
                 variant="solid"
                 size="3"
                 className="card-button"
-                onClick={handleSummaryDownload}
+                onClick={downloadSummaryCard}
               >
-                Download as JPEG
+                Download as jpeg
               </Button>
               <Flex gap={`6`} py={`6`}></Flex>
             </Flex>
