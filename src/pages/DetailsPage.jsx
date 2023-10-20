@@ -161,21 +161,14 @@ const DetailsPage = () => {
             </Flex>
             <Flex gap="4" direction={`column`} width="100%">
               {/* Summary card */}
-              <div
-                id="summary-card"
-                className="no-bg "
-                // style={{
-                //   backgroundImage:
-                //     'url("https://images.pexels.com/photos/10526880/pexels-photo-10526880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")',
-                // }}
-              >
+              <div id="summary-card" className="no-bg div-width">
                 <Flex
                   direction={`column`}
                   gap={`5`}
                   align="center"
                   className="no-bg summary-card"
                   style={{
-                    backgroundImage: `url("https://images.pexels.com/photos/10526880/pexels-photo-10526880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")`,
+                    backgroundImage: `url("src/assets/nordwood-themes-KcsKWw77Ovw-unsplash.jpg")`,
                   }}
                 >
                   <Flex
