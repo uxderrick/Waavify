@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, Flex, Box, Avatar } from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
-import PlaylistCard from "../components/PlaylistCard";
 import MusicCard from "../components/MusicCard";
 import axios from "axios";
 
@@ -154,9 +153,7 @@ const DetailsPage = () => {
               ))}
             </Flex>
           </Flex>
-          {/* Add recomendations to playlist */}
-          <PlaylistCard></PlaylistCard>
-          {/* Top tracks */}
+
           <Flex direction="column" gap="4" width="100%">
             <Flex direction="column" gap="3" align="start">
               <Flex gap="2">
