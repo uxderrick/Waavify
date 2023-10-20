@@ -22,20 +22,20 @@ const DetailsPage = () => {
         const imageUrl =
           "https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?auto=format&fit=crop&q=80&w=3087&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Ds";
 
-        // // Convert the online image to a Base64 Data URL
-        // fetch(imageUrl, {
-        //   mode: "no-cors",
-        // })
-        //   .then((response) => response.blob())
-        //   .then((blob) => {
-        //     const reader = new FileReader();
-        //     reader.readAsDataURL(blob);
-        //     reader.onloadend = () => {
-        //       const dataUrl = reader.result;
-        //       const backgroundImage = `url(${dataUrl})`;
-        //       // console.log("Background image URL:", backgroundImage);
-        //     };
-        //   });
+        // Convert the online image to a Base64 Data URL
+        fetch(imageUrl, {
+          mode: "no-cors",
+        })
+          .then((response) => response.blob())
+          .then((blob) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = () => {
+              const dataUrl = reader.result;
+              const backgroundImage = `url(${dataUrl})`;
+              console.log("Background image URL:", backgroundImage);
+            };
+          });
 
         const imageLoader = new Image();
         imageLoader.src = imageUrl;
