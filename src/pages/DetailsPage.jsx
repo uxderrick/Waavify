@@ -161,7 +161,7 @@ const DetailsPage = () => {
                   <Text
                     as="p"
                     size="2"
-                    className="sumary-text no-bg"
+                    className="track-text no-bg"
                     align="center"
                   >
                     Your top songs summary
