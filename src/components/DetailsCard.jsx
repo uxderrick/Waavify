@@ -46,7 +46,7 @@ const DetailsCard = ({ trackData, isFirstCard }) => {
 
   if (isFirstCard === true) {
     return (
-      <>
+      <div>
         <Flex
           align="start"
           justify="start"
@@ -93,7 +93,7 @@ const DetailsCard = ({ trackData, isFirstCard }) => {
             </Flex>
           </Flex>
         </Flex>
-      </>
+      </div>
     );
   }
 };
