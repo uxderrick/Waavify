@@ -7,14 +7,11 @@ import axios from "axios";
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
   "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10";
-const TOP_ARTISTS_ENDPOINT =
-  "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10&offset=0";
 
 const DetailsPage = () => {
   const [token, setToken] = useState("");
   const [userData, setUserData] = useState({});
   const [trackData, setTrackData] = useState([]);
-  const [topArtist, setTopArtist] = useState([]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -58,42 +55,13 @@ const DetailsPage = () => {
         });
     };
 
-    // get spotify top artist data
-    const fetchTopArtist = (token) => {
-      axios
-        .get(TOP_ARTISTS_ENDPOINT, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        })
-        .then((response) => {
-          setTopArtist(response?.data);
-          window.localStorage.setItem(
-            "top_artist",
-            response?.data?.items[0]?.id
-          );
-
-          window.localStorage.setItem(
-            "top_genre",
-            response?.data?.items[0]?.genres.join(", ")
-          );
-
-          // console.log(response?.data?.items[0]?.genres.join(", "));
-          // console.log(topArtist.items[0].genres[0]);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-
     if (hash) {
       const _token = hash.substring(1).split("&")[0].split("=")[1];
       window.localStorage.setItem("token", _token);
       setToken(_token);
       fetchUserData(_token);
       fetchTrackData(_token);
-      fetchTopArtist(_token);
+      // fetchTopArtist(_token);
     } else null;
   }, [token]);
 
@@ -147,7 +115,7 @@ const DetailsPage = () => {
                 <DetailsCard
                   key={index}
                   trackData={track} // Pass the track data as a prop to DetailsCard
-                  topArtist={topArtist} // Pass the track data as a prop to DetailsCard
+                  // topArtist={topArtist} // Pass the track data as a prop to DetailsCard
                   isFirstCard={index === 0}
                 ></DetailsCard>
               ))}
