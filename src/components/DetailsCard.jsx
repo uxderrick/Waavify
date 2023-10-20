@@ -47,7 +47,17 @@ const DetailsCard = ({ trackData, isFirstCard }) => {
   if (isFirstCard === true) {
     return (
       <>
-        <Flex align="start" justify="start" gap="3" wrap="wrap">
+        <Flex
+          align="start"
+          justify="start"
+          gap={{
+            initial: "3",
+            md: "6",
+            sm: "6",
+            xl: "6",
+          }}
+          wrap="wrap"
+        >
           <Flex>
             <Flex
               align="center"
