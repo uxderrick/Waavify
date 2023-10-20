@@ -18,24 +18,9 @@ const DetailsPage = () => {
       const backgroundImage = document.querySelector(".summary-card");
 
       if (backgroundImage && backgroundImage.style.backgroundImage) {
-        // const imageUrl = backgroundImage.style.backgroundImage.slice(5, -2);
-        const imageUrl =
-          "https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?auto=format&fit=crop&q=80&w=3087&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Ds";
+        const imageUrl = backgroundImage.style.backgroundImage.slice(5, -2);
 
-        // Convert the online image to a Base64 Data URL
-        fetch(imageUrl, {
-          mode: "no-cors",
-        })
-          .then((response) => response.blob())
-          .then((blob) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = () => {
-              const dataUrl = reader.result;
-              const backgroundImage = `url(${dataUrl})`;
-              console.log("Background image URL:", backgroundImage);
-            };
-          });
+        // console.log("Background image URL:", imageUrl);
 
         const imageLoader = new Image();
         imageLoader.src = imageUrl;
@@ -183,7 +168,7 @@ const DetailsPage = () => {
                   align="center"
                   className="no-bg summary-card"
                   style={{
-                    backgroundImage: `url("src/assets/nordwood-themes-KcsKWw77Ovw-unsplash.jpg")`,
+                    backgroundImage: `url("https://images.pexels.com/photos/10526880/pexels-photo-10526880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")`,
                   }}
                 >
                   <Flex
