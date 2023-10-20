@@ -7,7 +7,7 @@ const LandingPage = () => {
   // const REDIRECT_URI = "http://localhost:5173/dashboard";
 
   // for production - comment out for development
-  const CLIENT_ID = "1bde50c80abb4591bbfb7e53ff49ced7";
+  const CLIENT_ID = "0ffb874804fc49c0baa0d035ae776dd4";
   const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
 
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
