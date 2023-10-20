@@ -23,6 +23,10 @@
   flex: 1;
 }
 
+.logo {
+  padding-top: 64px;
+}
+
 .big-box {
   display: flex;
   flex-direction: column;

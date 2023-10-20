@@ -5,6 +5,7 @@ const LandingPage = () => {
   //for development - comment out for production
   // const CLIENT_ID = "cbc5c4992145444bb0094dc2d4668427";
   // const REDIRECT_URI = "http://localhost:5173/dashboard";
+  //
 
   // for production - comment out for development
   const CLIENT_ID = "0ffb874804fc49c0baa0d035ae776dd4";

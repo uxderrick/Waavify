@@ -70,8 +70,8 @@ const DetailsPage = () => {
     <>
       <Box
         py="1"
-        justify="center"
-        align="center"
+        // justify="center"
+        // align="center"
         style={{
           color: "white",
           marginLeft: "10%",
@@ -80,11 +80,12 @@ const DetailsPage = () => {
       >
         <Flex direction="column" gap="9" width="100%">
           {/* logo */}
-          <img
-            className="container"
-            src="https://raw.githubusercontent.com/uxderrick/Waavify/8cd10ca0d56640d6e309d45504ea3cc9c2567386/src/assets/logo.svg"
-            height={40}
-          ></img>
+          <Flex justify={`start`}>
+            <img
+              className="logo"
+              src="https://raw.githubusercontent.com/uxderrick/Waavify/8cd10ca0d56640d6e309d45504ea3cc9c2567386/src/assets/logo.svg"
+            ></img>
+          </Flex>
           <Flex direction="column" gap="6">
             <Flex direction="column" gap="3" align="start">
               <Flex gap="2">
