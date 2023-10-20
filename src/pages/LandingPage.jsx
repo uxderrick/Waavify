@@ -36,8 +36,8 @@ const LandingPage = () => {
 
   //
   return (
-    <>
-      <Box className="big-box">
+    <div>
+      <Box className="big-box landing-center-guy">
         <Box
           py="1"
           style={{
@@ -78,7 +78,7 @@ const LandingPage = () => {
         </Box>
         <Box className="image-container"></Box>
       </Box>
-    </>
+    </div>
   );
 };
 

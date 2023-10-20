@@ -77,7 +77,7 @@ const DetailsPage = () => {
 
   //UI for the details page
   return (
-    <>
+    <div className="center-guy">
       <Box
         py="1"
         // justify="center"
@@ -204,7 +204,7 @@ const DetailsPage = () => {
           </Flex>
         </Flex>
       </Box>
-    </>
+    </div>
   );
 };
 
