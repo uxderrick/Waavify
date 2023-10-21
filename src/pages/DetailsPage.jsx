@@ -20,19 +20,17 @@ const DetailsPage = () => {
       if (backgroundImage && backgroundImage.style.backgroundImage) {
         const imageUrl = backgroundImage.style.backgroundImage.slice(5, -2);
 
-        // console.log("Background image URL:", imageUrl);
-
         const imageLoader = new Image();
         imageLoader.src = imageUrl;
 
         imageLoader.onload = () => {
-          // console.log("Background image loaded.");
-
           html2canvas(summaryCard).then((canvas) => {
             const imgData = canvas.toDataURL("image/jpeg");
+
+            // Create a download link with the "download" attribute
             const link = document.createElement("a");
             link.href = imgData;
-            link.download = "summary_card.jpeg";
+            link.download = "summary_card.jpeg"; // Set the download file name and extension
             link.click();
           });
         };
@@ -168,7 +166,7 @@ const DetailsPage = () => {
                   align="center"
                   className="no-bg summary-card"
                   style={{
-                    backgroundImage: `url("https://images.pexels.com/photos/10526880/pexels-photo-10526880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")`,
+                    backgroundImage: `url("src/assets/nordwood-themes-KcsKWw77Ovw-unsplash.jpg")`,
                   }}
                 >
                   <Flex
