@@ -15,12 +15,14 @@
     "@radix-ui/themes": "^2.0.0",
     "axios": "^1.5.1",
     "dom-to-image": "^2.6.0",
+    "html-to-image": "^1.11.11",
     "html2canvas": "^1.4.1",
     "react": "^18.2.0",
     "react-component-export-image": "^1.0.6",
     "react-dom": "^18.2.0",
     "react-router": "^6.16.0",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "use-screenshot-react-hook": "^1.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
