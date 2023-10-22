@@ -4,12 +4,16 @@ import DetailsCard from "../components/DetailsCard";
 import axios from "axios";
 import TrackRow from "../components/TrackRow";
 import { takeScreenshot } from "../utils/utils";
+import { useRef } from "react";
+import html2canvas from "html2canvas";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
   "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5";
 
 const DetailsPage = () => {
+  //
+  const printRef = useRef();
   //
 
   const [token, setToken] = useState("");
@@ -69,8 +73,32 @@ const DetailsPage = () => {
 
   //////////////////////////////
 
-  const capture = () => {
-    takeScreenshot("download-card", "waavify.jpeg", "image/jpeg", "white");
+  // const capture = () => {
+  //   takeScreenshot("download-card", "waavify.jpeg", "image/jpeg", "white");
+  // };
+
+  const capture = async () => {
+    const element = printRef.current;
+    const canvas = await html2canvas(element, {
+      backgroundColor: "none",
+      logging: true,
+      useCORS: true, //to enable cross origin perms
+    });
+
+    const data = canvas.toDataURL("image/jpg");
+    const link = document.createElement("a");
+
+    if (typeof link.download === "string") {
+      link.href = data;
+      console.log("");
+      link.download = "image.jpg";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      window.open(data);
+    }
   };
 
   //UI for the details page
@@ -139,7 +167,11 @@ const DetailsPage = () => {
             </Flex>
             <Flex gap="4" direction={`column`} width="100%">
               {/* Summary card */}
-              <div id="download-card" className="no-bg div-width">
+              <div
+                id="download-card"
+                className="no-bg div-width"
+                ref={printRef}
+              >
                 <Flex
                   direction={`column`}
                   gap={`5`}
