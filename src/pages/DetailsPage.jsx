@@ -70,13 +70,7 @@ const DetailsPage = () => {
   //////////////////////////////
 
   const capture = () => {
-    takeScreenshot(
-      "download-card",
-      "waavify.jpeg",
-      "image/jpeg",
-      "white",
-      "none"
-    );
+    takeScreenshot("download-card", "waavify.jpeg", "image/jpeg", "white");
   };
 
   //UI for the details page

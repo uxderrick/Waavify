@@ -18,7 +18,8 @@ export const takeScreenshot = (
   // Capture a screenshot of the element
   html2canvas(element, {
     backgroundColor: backgroundColor,
-    backgroundImage: backgroundImage,
+    logging: true,
+    useCORS: true, //to enable cross origin perms
   })
     .then((canvas) => {
       // Convert the canvas to a data URL
@@ -27,6 +28,19 @@ export const takeScreenshot = (
       // Check if the data URL is empty (e.g. because of CORS restrictions)
       if (canvas.toDataURL() === "data:,") {
         console.error("The canvas is empty. Content may not have loaded.");
+        img.onload = () => {
+          console.log("Image loaded.");
+          img.src = image;
+
+          // Create a link element
+          // Set the link's href to the data URL
+          // Set the link's download attribute to the filename
+          // Trigger the link element's click event
+          const a = document.createElement("a");
+          a.href = image;
+          a.download = fileName;
+          a.click();
+        };
         return;
       }
 
