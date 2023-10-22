@@ -3,7 +3,6 @@ import { Text, Flex, Box, Avatar, Heading, Button } from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
 import axios from "axios";
 import TrackRow from "../components/TrackRow";
-import { takeScreenshot } from "../utils/utils";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 
