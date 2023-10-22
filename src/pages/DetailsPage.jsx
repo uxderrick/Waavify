@@ -85,13 +85,13 @@ const DetailsPage = () => {
       useCORS: true, //to enable cross origin perms
     });
 
-    const data = canvas.toDataURL("image/jpg");
+    const data = canvas.toDataURL("image/jpeg");
     const link = document.createElement("a");
 
     if (typeof link.download === "string") {
       link.href = data;
       console.log("");
-      link.download = "image.jpg";
+      link.download = "image.jpeg";
 
       document.body.appendChild(link);
       link.click();
@@ -99,6 +99,9 @@ const DetailsPage = () => {
     } else {
       window.open(data);
     }
+
+    //
+    link.click();
   };
 
   //UI for the details page
