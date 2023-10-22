@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Flex, Box, Separator, Heading } from "@radix-ui/themes";
+import { Text, Flex } from "@radix-ui/themes";
 
 const TrackRow = ({ trackData }) => {
   // handle button click
@@ -8,7 +8,8 @@ const TrackRow = ({ trackData }) => {
 
     // open the spotify auth page
     window.location.href = urlToOpen;
-    trackData?.name;
+
+    //
   };
 
   return (
