@@ -15,8 +15,6 @@ const LandingPage = () => {
   const RESPONSE_TYPE = "token";
   const SCOPE = [
     "user-read-recently-played",
-    "playlist-read-collaborative",
-    "playlist-read-private",
     "user-top-read",
     "user-read-email",
     "user-read-private",
