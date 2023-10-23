@@ -291,7 +291,7 @@ const DetailsPage = () => {
                         align="center"
                         className="no-bg summary-card"
                         style={{
-                          backgroundImage: `url("https://images.unsplash.com/photo-1686806372892-6a18b402bcef?auto=format&fit=crop&q=80&w=3387&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
+                          backgroundImage: `url("https://images.pond5.com/old-grunge-parchment-paper-texture-illustration-164865980_iconl_nowm.jpeg")`,
                         }}
                       >
                         <Flex
