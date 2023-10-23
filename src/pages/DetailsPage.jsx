@@ -214,7 +214,7 @@ const DetailsPage = () => {
                   <Flex
                     className="no-bg track-list"
                     direction={`column`}
-                    gap={`5`}
+                    gap={`3`}
                   >
                     {trackData.items?.map((track, index) => (
                       <TrackRow
