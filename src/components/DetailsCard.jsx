@@ -32,6 +32,8 @@ const DetailsCard = ({ trackData, isFirstCard }) => {
             "top_genre",
             response?.data?.items[0]?.genres[0]
           );
+
+          // console.log(response?.data?.items[2]?.genres.join(", "));
         })
         .catch((error) => {
           console.log(error);
