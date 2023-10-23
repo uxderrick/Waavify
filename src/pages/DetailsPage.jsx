@@ -159,11 +159,14 @@ const DetailsPage = () => {
             </Flex>
           </Flex>
 
-          <Flex direction="column" gap="4" width="100%">
-            <Flex direction="column" gap="3" align="start">
-              <Flex gap="2">
+          <Flex direction="column" gap="5" width="100%">
+            <Flex direction="column" align="start">
+              <Flex gap="1" direction={`column`}>
                 <Text size="4" weight="bold">
                   Your Spotify summary
+                </Text>
+                <Text as="p" size="2" className="small-text">
+                  Click on any title to listen to it
                 </Text>
               </Flex>
             </Flex>
@@ -176,7 +179,7 @@ const DetailsPage = () => {
               >
                 <Flex
                   direction={`column`}
-                  gap={`5`}
+                  gap={`3`}
                   align="center"
                   className="no-bg summary-card"
                   style={{
@@ -189,6 +192,15 @@ const DetailsPage = () => {
                     align="center"
                     className="no-bg"
                   >
+                    {/* add the avatar of the top 5 artists here */}
+
+                    <Avatar
+                      variant="solid"
+                      size="2"
+                      radius="full"
+                      fallback=""
+                      src={userData.images && userData.images[0].url}
+                    ></Avatar>
                     <Heading className="no-bg black-text" size={`4`}>
                       {userData.display_name}
                       ’s top 5 songs
@@ -207,7 +219,7 @@ const DetailsPage = () => {
                   <Flex
                     className="no-bg track-list"
                     direction={`column`}
-                    gap={`5`}
+                    gap={`3`}
                   >
                     {trackData.items?.map((track, index) => (
                       <TrackRow

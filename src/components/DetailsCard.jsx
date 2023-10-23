@@ -33,7 +33,9 @@ const DetailsCard = ({ trackData, isFirstCard }) => {
             response?.data?.items[0]?.genres[0]
           );
 
-          // console.log(response?.data?.items[2]?.genres.join(", "));
+          //console log all top artist image url
+          // console.log(response?.data?.items[0]?.images[0]?.url);
+          // console.log(response?.data?.items[0]?.genres.join(", "));
         })
         .catch((error) => {
           console.log(error);
