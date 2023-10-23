@@ -176,7 +176,7 @@ const DetailsPage = () => {
               >
                 <Flex
                   direction={`column`}
-                  gap={`5`}
+                  gap={`3`}
                   align="center"
                   className="no-bg summary-card"
                   style={{
@@ -189,6 +189,13 @@ const DetailsPage = () => {
                     align="center"
                     className="no-bg"
                   >
+                    <Avatar
+                      variant="solid"
+                      size="2"
+                      radius="full"
+                      fallback=""
+                      src={userData.images && userData.images[0].url}
+                    ></Avatar>
                     <Heading className="no-bg black-text" size={`4`}>
                       {userData.display_name}
                       ’s top 5 songs

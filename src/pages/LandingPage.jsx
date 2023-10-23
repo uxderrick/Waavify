@@ -3,20 +3,18 @@ import React, { useEffect } from "react";
 
 const LandingPage = () => {
   //for development - comment out for production
-  // const CLIENT_ID = "cbc5c4992145444bb0094dc2d4668427";
-  // const REDIRECT_URI = "http://localhost:5173/dashboard";
+  const CLIENT_ID = "cbc5c4992145444bb0094dc2d4668427";
+  const REDIRECT_URI = "http://localhost:5173/dashboard";
   //
 
   // for production - comment out for development
-  const CLIENT_ID = "0ffb874804fc49c0baa0d035ae776dd4";
-  const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
+  // const CLIENT_ID = "0ffb874804fc49c0baa0d035ae776dd4";
+  // const REDIRECT_URI = "https://waavify.vercel.app/dashboard";
 
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const SCOPE = [
     "user-read-recently-played",
-    "playlist-read-collaborative",
-    "playlist-read-private",
     "user-top-read",
     "user-read-email",
     "user-read-private",

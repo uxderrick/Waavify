@@ -18,7 +18,7 @@ const TrackRow = ({ trackData }) => {
         <Text
           as="p"
           size="2"
-          className="sumary-text no-bg black-text"
+          className=" no-bg green-text"
           onClick={handleButtonClick}
         >
           <strong className="no-bg" onClick={handleButtonClick}>
