@@ -51,7 +51,7 @@ const DetailsPage = () => {
           console.log(error);
         });
     };
-
+    //
     // get spotify track data
     const fetchTrackData = (token) => {
       axios
