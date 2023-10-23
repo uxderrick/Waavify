@@ -56,6 +56,7 @@ const DetailsCard = ({ trackData, isFirstCard }) => {
             xl: "6",
           }}
           wrap="wrap"
+          
         >
           <Flex>
             <Flex
