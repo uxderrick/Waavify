@@ -20,6 +20,13 @@
   margin: 1px 0px 1px 0px;
 }
 
+.horizontal-line-2 {
+  width: 100%;
+  height: 1px;
+  background-color: wheat;
+  margin: 1px 0px 1px 0px;
+}
+
 .image-container {
   width: 100%;
   /* height: 40px; */
@@ -54,6 +61,10 @@
   color: #13793f;
 }
 
+.tab-text {
+  color: gray;
+}
+
 .center-guy {
   display: flex;
   justify-content: center;
@@ -76,7 +87,7 @@
 }
 
 .details-value {
-  font-size: 35px;
+  font-size: 32px;
   font-weight: bolder;
   line-height: 1.2;
   font-style: italic;

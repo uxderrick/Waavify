@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Text, Flex, Box, Avatar, Heading, Button } from "@radix-ui/themes";
+import {
+  Text,
+  Flex,
+  Box,
+  Avatar,
+  Heading,
+  Button,
+  Tabs,
+} from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
 import axios from "axios";
 import TrackRow from "../components/TrackRow";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
+// import { color } from "html2canvas/dist/types/css/types/color";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
@@ -166,10 +175,11 @@ const DetailsPage = () => {
                   Your Spotify summary
                 </Text>
                 <Text as="p" size="2" className="small-text">
-                  Click on any title to listen to it
+                  Click on a track to listen to it
                 </Text>
               </Flex>
             </Flex>
+
             <Flex gap="4" direction={`column`} width="100%">
               {/* Summary card */}
               <div
@@ -193,7 +203,6 @@ const DetailsPage = () => {
                     className="no-bg"
                   >
                     {/* add the avatar of the top 5 artists here */}
-
                     <Avatar
                       variant="solid"
                       size="2"
