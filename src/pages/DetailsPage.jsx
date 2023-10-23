@@ -68,7 +68,8 @@ const DetailsPage = () => {
         .catch((error) => {
           console.log(error);
         });
-    };
+    }; 
+    
 
     if (hash) {
       const _token = hash.substring(1).split("&")[0].split("=")[1];
