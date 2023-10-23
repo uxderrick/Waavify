@@ -79,8 +79,6 @@ const DetailsPage = () => {
     } else null;
   }, [token]);
 
-  //////////////////////////////
-
   // const capture = () => {
   //   takeScreenshot("download-card", "waavify.jpeg", "image/jpeg", "white");
   // };
