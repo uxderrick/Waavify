@@ -1,4 +1,4 @@
-import { Flex, Text } from "@radix-ui/themes";
+import { Flex, Text, Avatar } from "@radix-ui/themes";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -32,10 +32,6 @@ const DetailsCard = ({ trackData, isFirstCard }) => {
             "top_genre",
             response?.data?.items[0]?.genres[0]
           );
-
-          //console log all top artist image url
-          // console.log(response?.data?.items[0]?.images[0]?.url);
-          // console.log(response?.data?.items[0]?.genres.join(", "));
         })
         .catch((error) => {
           console.log(error);

@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Text, Flex, Box, Avatar, Heading, Button } from "@radix-ui/themes";
+import {
+  Text,
+  Flex,
+  Box,
+  Avatar,
+  Heading,
+  Button,
+  Tabs,
+} from "@radix-ui/themes";
 import DetailsCard from "../components/DetailsCard";
 import axios from "axios";
 import TrackRow from "../components/TrackRow";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
+// import { color } from "html2canvas/dist/types/css/types/color";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
@@ -159,95 +168,200 @@ const DetailsPage = () => {
             </Flex>
           </Flex>
 
-          <Flex direction="column" gap="5" width="100%">
+          <Flex direction="column" gap="3" width="100%">
             <Flex direction="column" align="start">
               <Flex gap="1" direction={`column`}>
                 <Text size="4" weight="bold">
                   Your Spotify summary
                 </Text>
-                <Text as="p" size="2" className="small-text">
-                  Click on any title to listen to it
-                </Text>
               </Flex>
             </Flex>
-            <Flex gap="4" direction={`column`} width="100%">
-              {/* Summary card */}
-              <div
-                id="download-card"
-                className="no-bg div-width"
-                ref={printRef}
-              >
-                <Flex
-                  direction={`column`}
-                  gap={`3`}
-                  align="center"
-                  className="no-bg summary-card"
-                  style={{
-                    backgroundImage: `url("https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?auto=format&fit=crop&q=80&w=3087&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
-                  }}
-                >
-                  <Flex
-                    direction={`column`}
-                    gap={`1`}
-                    align="center"
-                    className="no-bg"
-                  >
-                    {/* add the avatar of the top 5 artists here */}
 
-                    <Avatar
-                      variant="solid"
-                      size="2"
-                      radius="full"
-                      fallback=""
-                      src={userData.images && userData.images[0].url}
-                    ></Avatar>
-                    <Heading className="no-bg black-text" size={`4`}>
-                      {userData.display_name}
-                      ’s top 5 songs
-                    </Heading>
-                    <Text
-                      as="p"
-                      size="2"
-                      className="track-text no-bg"
-                      align="center"
-                    >
-                      Your top songs summary
-                    </Text>
-                  </Flex>
-                  <div className="horizontal-line"></div>
-                  {/* track list */}
-                  <Flex
-                    className="no-bg track-list"
-                    direction={`column`}
-                    gap={`3`}
-                  >
-                    {trackData.items?.map((track, index) => (
-                      <TrackRow
-                        key={index}
-                        trackData={track} // Pass the track data as a prop to MusicCard
-                        // isFirstCard={index === 0}
-                      ></TrackRow>
-                    ))}
-                    {/* <TrackRow></TrackRow> */}
-                  </Flex>
-                  <div className="horizontal-line"></div>
-
-                  {/* <Separator orientation="horizontal" size="4" color="orange" /> */}
-                  <Text size="2" className="sumary-text no-bg" align="center">
-                    https://waavify.vercel.app
+            {/* Tabs */}
+            <Tabs.Root defaultValue="account">
+              <Tabs.List>
+                <Tabs.Trigger value="account">
+                  <Text size="2" className="tab-text">
+                    White paper
                   </Text>
-                </Flex>
-              </div>
-              <Button
-                variant="solid"
-                size="3"
-                className="card-button"
-                onClick={capture}
-              >
-                Download as jpeg
-              </Button>
-              <Flex gap={`6`} py={`6`}></Flex>
-            </Flex>
+                </Tabs.Trigger>
+                <Tabs.Trigger value="documents">
+                  <Text size="2" className="tab-text">
+                    Parchment background
+                  </Text>
+                </Tabs.Trigger>
+              </Tabs.List>
+
+              <Box px="4" pt="3" pb="2">
+                <Tabs.Content value="account">
+                  <Flex gap="4" direction={`column`} width="100%">
+                    {/* Summary card */}
+                    <div
+                      id="download-card"
+                      className="no-bg div-width"
+                      ref={printRef}
+                    >
+                      <Flex
+                        direction={`column`}
+                        gap={`3`}
+                        align="center"
+                        className="no-bg summary-card"
+                        style={{
+                          backgroundImage: `url("https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?auto=format&fit=crop&q=80&w=3087&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
+                        }}
+                      >
+                        <Flex
+                          direction={`column`}
+                          gap={`1`}
+                          align="center"
+                          className="no-bg"
+                        >
+                          {/* add the avatar of the top 5 artists here */}
+                          <Avatar
+                            variant="solid"
+                            size="2"
+                            radius="full"
+                            fallback=""
+                            src={userData.images && userData.images[0].url}
+                          ></Avatar>
+                          <Heading className="no-bg black-text" size={`4`}>
+                            {userData.display_name}
+                            ’s top 5 songs
+                          </Heading>
+                          <Text
+                            as="p"
+                            size="2"
+                            className="track-text no-bg"
+                            align="center"
+                          >
+                            Your top songs summary
+                          </Text>
+                        </Flex>
+                        <div className="horizontal-line"></div>
+                        {/* track list */}
+                        <Flex
+                          className="no-bg track-list"
+                          direction={`column`}
+                          gap={`3`}
+                        >
+                          {trackData.items?.map((track, index) => (
+                            <TrackRow
+                              key={index}
+                              trackData={track} // Pass the track data as a prop to MusicCard
+                              // isFirstCard={index === 0}
+                            ></TrackRow>
+                          ))}
+                          {/* <TrackRow></TrackRow> */}
+                        </Flex>
+                        <div className="horizontal-line"></div>
+
+                        {/* <Separator orientation="horizontal" size="4" color="orange" /> */}
+                        <Text
+                          size="2"
+                          className="sumary-text no-bg"
+                          align="center"
+                        >
+                          https://waavify.vercel.app
+                        </Text>
+                      </Flex>
+                    </div>
+                    <Button
+                      variant="solid"
+                      size="3"
+                      className="card-button"
+                      onClick={capture}
+                    >
+                      Download as jpeg
+                    </Button>
+                    <Flex gap={`6`} py={`6`}></Flex>
+                  </Flex>
+                </Tabs.Content>
+
+                <Tabs.Content value="documents">
+                  <Flex gap="4" direction={`column`} width="100%">
+                    {/* Summary card */}
+                    <div
+                      id="download-card"
+                      className="no-bg div-width"
+                      ref={printRef}
+                    >
+                      <Flex
+                        direction={`column`}
+                        gap={`3`}
+                        align="center"
+                        className="no-bg summary-card"
+                        style={{
+                          backgroundImage: `url("https://images.unsplash.com/photo-1686806372892-6a18b402bcef?auto=format&fit=crop&q=80&w=3387&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
+                        }}
+                      >
+                        <Flex
+                          direction={`column`}
+                          gap={`1`}
+                          align="center"
+                          className="no-bg"
+                        >
+                          {/* add the avatar of the top 5 artists here */}
+                          <Avatar
+                            variant="solid"
+                            size="2"
+                            radius="full"
+                            fallback=""
+                            src={userData.images && userData.images[0].url}
+                          ></Avatar>
+                          <Heading className="no-bg black-text" size={`4`}>
+                            {userData.display_name}
+                            ’s top 5 songs
+                          </Heading>
+                          <Text
+                            as="p"
+                            size="2"
+                            className="track-text no-bg"
+                            align="center"
+                          >
+                            Your top songs summary
+                          </Text>
+                        </Flex>
+                        <div className="horizontal-line-2"></div>
+                        {/* track list */}
+                        <Flex
+                          className="no-bg track-list"
+                          direction={`column`}
+                          gap={`3`}
+                        >
+                          {trackData.items?.map((track, index) => (
+                            <TrackRow
+                              key={index}
+                              trackData={track} // Pass the track data as a prop to MusicCard
+                              // isFirstCard={index === 0}
+                            ></TrackRow>
+                          ))}
+                          {/* <TrackRow></TrackRow> */}
+                        </Flex>
+                        <div className="horizontal-line-2"></div>
+
+                        {/* <Separator orientation="horizontal" size="4" color="orange" /> */}
+                        <Text
+                          size="2"
+                          className="sumary-text no-bg"
+                          align="center"
+                        >
+                          https://waavify.vercel.app
+                        </Text>
+                      </Flex>
+                    </div>
+                    <Button
+                      variant="solid"
+                      size="3"
+                      className="card-button"
+                      onClick={capture}
+                    >
+                      Download as jpeg
+                    </Button>
+                    <Flex gap={`6`} py={`6`}></Flex>
+                  </Flex>
+                </Tabs.Content>
+              </Box>
+            </Tabs.Root>
           </Flex>
         </Flex>
       </Box>
