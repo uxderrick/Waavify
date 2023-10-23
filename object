@@ -1,0 +1,26 @@
+{
+    "display_name": "Derrick",
+    "external_urls": {
+        "spotify": "https://open.spotify.com/user/31brmkjqfw2h2sn6jaysbchh63vm"
+    },
+    "href": "https://api.spotify.com/v1/users/31brmkjqfw2h2sn6jaysbchh63vm",
+    "id": "31brmkjqfw2h2sn6jaysbchh63vm",
+    "images": [
+        {
+            "url": "https://i.scdn.co/image/ab67757000003b8210f6b8c88cd9abeec096a4d6",
+            "height": 64,
+            "width": 64
+        },
+        {
+            "url": "https://i.scdn.co/image/ab6775700000ee8510f6b8c88cd9abeec096a4d6",
+            "height": 300,
+            "width": 300
+        }
+    ],
+    "type": "user",
+    "uri": "spotify:user:31brmkjqfw2h2sn6jaysbchh63vm",
+    "followers": {
+        "href": null,
+        "total": 11
+    }
+}
