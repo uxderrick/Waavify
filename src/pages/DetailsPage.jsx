@@ -51,7 +51,7 @@ const DetailsPage = () => {
           console.log(error);
         });
     };
-
+    //
     // get spotify track data
     const fetchTrackData = (token) => {
       axios
@@ -68,7 +68,8 @@ const DetailsPage = () => {
         .catch((error) => {
           console.log(error);
         });
-    };
+    }; 
+    
 
     if (hash) {
       const _token = hash.substring(1).split("&")[0].split("=")[1];
@@ -78,8 +79,6 @@ const DetailsPage = () => {
       fetchTrackData(_token);
     } else null;
   }, [token]);
-
-  //////////////////////////////
 
   // const capture = () => {
   //   takeScreenshot("download-card", "waavify.jpeg", "image/jpeg", "white");
