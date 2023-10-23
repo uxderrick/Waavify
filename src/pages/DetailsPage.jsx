@@ -83,7 +83,7 @@ const DetailsPage = () => {
       backgroundColor: "none",
       logging: true,
       useCORS: true, //to enable cross origin perms
-    });
+    }); 
 
     const data = canvas.toDataURL("image/jpg");
     const link = document.createElement("a");
