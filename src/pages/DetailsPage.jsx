@@ -167,9 +167,9 @@ const DetailsPage = () => {
             </Flex>
           </Flex>
 
-          <Flex direction="column" gap="5" width="100%">
-            <Flex direction="column" align="start">
-              <Flex gap="1" direction={`column`}>
+          <Flex direction="column" gap="4" width="100%">
+            <Flex direction="column" gap="3" align="start">
+              <Flex gap="2">
                 <Text size="4" weight="bold">
                   Your Spotify summary
                 </Text>
@@ -188,7 +188,7 @@ const DetailsPage = () => {
               >
                 <Flex
                   direction={`column`}
-                  gap={`3`}
+                  gap={`5`}
                   align="center"
                   className="no-bg summary-card"
                   style={{
@@ -227,7 +227,7 @@ const DetailsPage = () => {
                   <Flex
                     className="no-bg track-list"
                     direction={`column`}
-                    gap={`3`}
+                    gap={`5`}
                   >
                     {trackData.items?.map((track, index) => (
                       <TrackRow
