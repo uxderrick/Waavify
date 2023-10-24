@@ -5,6 +5,8 @@ import axios from "axios";
 import TrackRow from "../components/TrackRow";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const USERDATA_ENDPOINT = "https://api.spotify.com/v1/me";
 const TRACK_ENDPOINT =
@@ -18,8 +20,14 @@ const DetailsPage = () => {
   const [token, setToken] = useState("");
   const [userData, setUserData] = useState({});
   const [trackData, setTrackData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    //Loading skeleton
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
     const hash = window.location.hash;
 
     // get spotify user data
@@ -105,90 +113,28 @@ const DetailsPage = () => {
 
   //UI for the details page
   return (
-    <div className="center-guy">
-      <Box
-        py="1"
-        style={{
-          color: "white",
-          marginLeft: "10%",
-          marginRight: "10%",
-        }}
-      >
-        <Flex direction="column" gap="9" width="100%">
-          {/* logo */}
-          <Flex justify={`start`}>
-            <img
-              className="logo"
-              src="https://raw.githubusercontent.com/uxderrick/Waavify/8cd10ca0d56640d6e309d45504ea3cc9c2567386/src/assets/logo.svg"
-            ></img>
-          </Flex>
-          <Flex direction="column" gap="6">
-            <Flex direction="column" gap="3" align="start">
-              <Flex gap="2">
-                <Avatar
-                  variant="solid"
-                  size="2"
-                  radius="full"
-                  fallback=""
-                  src={userData.images && userData.images[0].url}
-                ></Avatar>
-                <Text
-                  size={{
-                    initial: "7",
-                    md: "7",
-                    sm: "7",
-                    xl: "7",
-                  }}
-                >
-                  {userData.display_name}
-                </Text>
+    <>
+      {
+        <div className="center-guy">
+          <Box
+            py="1"
+            style={{
+              color: "white",
+              marginLeft: "10%",
+              marginRight: "10%",
+            }}
+          >
+            <Flex direction="column" gap="9" width="100%">
+              {/* logo */}
+              <Flex justify={`start`}>
+                <img
+                  className="logo"
+                  src="https://raw.githubusercontent.com/uxderrick/Waavify/8cd10ca0d56640d6e309d45504ea3cc9c2567386/src/assets/logo.svg"
+                ></img>
               </Flex>
-              <Text as="p" size="2" className="small-text">
-                Find below your lifetime Spotify behaviour
-              </Text>
-            </Flex>
-            <Flex gap="6" wrap="wrap">
-              {trackData?.items?.map((track, index) => (
-                <DetailsCard
-                  key={index}
-                  trackData={track} // Pass the track data as a prop to DetailsCard
-                  // topArtist={topArtist} // Pass the track data as a prop to DetailsCard
-                  isFirstCard={index === 0}
-                ></DetailsCard>
-              ))}
-            </Flex>
-          </Flex>
-
-          <Flex direction="column" gap="4" width="100%">
-            <Flex direction="column" gap="3" align="start">
-              <Flex gap="2">
-                <Text size="4" weight="bold">
-                  Your Spotify summary
-                </Text>
-              </Flex>
-            </Flex>
-            <Flex gap="4" direction={`column`} width="100%">
-              {/* Summary card */}
-              <div
-                id="download-card"
-                className="no-bg div-width"
-                ref={printRef}
-              >
-                <Flex
-                  direction={`column`}
-                  gap={`3`}
-                  align="center"
-                  className="no-bg summary-card"
-                  style={{
-                    backgroundImage: `url("https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?auto=format&fit=crop&q=80&w=3087&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
-                  }}
-                >
-                  <Flex
-                    direction={`column`}
-                    gap={`1`}
-                    align="center"
-                    className="no-bg"
-                  >
+              <Flex direction="column" gap="6">
+                <Flex direction="column" gap="3" align="start">
+                  <Flex gap="2">
                     <Avatar
                       variant="solid"
                       size="2"
@@ -196,57 +142,148 @@ const DetailsPage = () => {
                       fallback=""
                       src={userData.images && userData.images[0].url}
                     ></Avatar>
-                    <Heading className="no-bg black-text" size={`4`}>
-                      {userData.display_name}
-                      ’s top 5 songs
-                    </Heading>
-                    <Text
-                      as="p"
-                      size="2"
-                      className="track-text no-bg"
-                      align="center"
-                    >
-                      Your top songs summary
-                    </Text>
+                    {loading && userData ? (
+                      <Skeleton
+                        width={200}
+                        height={30}
+                        // className="loading"
+                        baseColor="#202020"
+                        highlightColor="#444"
+                      />
+                    ) : (
+                      <Text
+                        size={{
+                          initial: "7",
+                          md: "7",
+                          sm: "7",
+                          xl: "7",
+                        }}
+                      >
+                        {userData.display_name}
+                      </Text>
+                    )}
                   </Flex>
-                  <div className="horizontal-line"></div>
-                  {/* track list */}
-                  <Flex
-                    className="no-bg track-list"
-                    direction={`column`}
-                    gap={`3`}
-                  >
-                    {trackData.items?.map((track, index) => (
-                      <TrackRow
-                        key={index}
-                        trackData={track} // Pass the track data as a prop to MusicCard
-                        // isFirstCard={index === 0}
-                      ></TrackRow>
-                    ))}
-                    {/* <TrackRow></TrackRow> */}
-                  </Flex>
-                  <div className="horizontal-line"></div>
 
-                  {/* <Separator orientation="horizontal" size="4" color="orange" /> */}
-                  <Text size="2" className="sumary-text no-bg" align="center">
-                    https://waavify.vercel.app
+                  <Text as="p" size="2" className="small-text">
+                    Find below your lifetime Spotify behaviour
                   </Text>
                 </Flex>
-              </div>
-              <Button
-                variant="solid"
-                size="3"
-                className="card-button"
-                onClick={capture}
-              >
-                Download as jpeg
-              </Button>
-              <Flex gap={`6`} py={`6`}></Flex>
+                <Flex gap="6" wrap="wrap">
+                  {trackData?.items?.map((track, index) => (
+                    <DetailsCard
+                      key={index}
+                      trackData={track} // Pass the track data as a prop to DetailsCard
+                      // topArtist={topArtist} // Pass the track data as a prop to DetailsCard
+                      isFirstCard={index === 0}
+                    ></DetailsCard>
+                  ))}
+                </Flex>
+              </Flex>
+
+              <Flex direction="column" gap="4" width="100%">
+                <Flex direction="column" gap="3" align="start">
+                  <Flex gap="2">
+                    <Text size="4" weight="bold">
+                      Your Spotify summary
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex gap="4" direction={`column`} width="100%">
+                  {/* Summary card */}
+                  {loading && userData && trackData ? (
+                    <Skeleton
+                      width={320}
+                      height={200}
+                      // className="loading"
+                      baseColor="#202020"
+                      highlightColor="#444"
+                    ></Skeleton>
+                  ) : (
+                    <div
+                      id="download-card"
+                      className="no-bg div-width"
+                      ref={printRef}
+                    >
+                      <Flex
+                        direction={`column`}
+                        gap={`3`}
+                        align="center"
+                        className="no-bg summary-card"
+                        style={{
+                          backgroundImage: `url("https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?auto=format&fit=crop&q=80&w=3087&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
+                        }}
+                      >
+                        <Flex
+                          direction={`column`}
+                          gap={`1`}
+                          align="center"
+                          className="no-bg"
+                        >
+                          <Avatar
+                            variant="solid"
+                            size="2"
+                            radius="full"
+                            fallback=""
+                            src={userData.images && userData.images[0].url}
+                          ></Avatar>
+                          <Heading className="no-bg black-text" size={`4`}>
+                            {userData.display_name}
+                            ’s top 5 songs
+                          </Heading>
+                          <Text
+                            as="p"
+                            size="2"
+                            className="track-text no-bg"
+                            align="center"
+                          >
+                            Your top songs summary
+                          </Text>
+                        </Flex>
+                        <div className="horizontal-line"></div>
+                        {/* track list */}
+                        <Flex
+                          className="no-bg track-list"
+                          direction={`column`}
+                          gap={`3`}
+                        >
+                          {trackData.items?.map((track, index) => (
+                            <TrackRow
+                              key={index}
+                              trackData={track} // Pass the track data as a prop to MusicCard
+                              // isFirstCard={index === 0}
+                            ></TrackRow>
+                          ))}
+                          {/* <TrackRow></TrackRow> */}
+                        </Flex>
+                        <div className="horizontal-line"></div>
+
+                        {/* <Separator orientation="horizontal" size="4" color="orange" /> */}
+                        <Text
+                          size="2"
+                          className="sumary-text no-bg"
+                          align="center"
+                        >
+                          https://waavify.vercel.app
+                        </Text>
+                      </Flex>
+                    </div>
+                  )}
+                  <Button
+                    variant="solid"
+                    size="3"
+                    className="card-button"
+                    onClick={capture}
+                  >
+                    Download as jpeg
+                  </Button>
+                  <Flex gap={`6`} py={`6`}></Flex>
+                </Flex>
+              </Flex>
             </Flex>
-          </Flex>
-        </Flex>
-      </Box>
-    </div>
+          </Box>
+        </div>
+      }
+    </>
   );
 };
 
